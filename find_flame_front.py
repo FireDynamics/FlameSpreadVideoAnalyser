@@ -24,8 +24,13 @@ def analyse_line(line):
 
     # determine the maximal value of the second (index 1) color channel, here green
     max_green = np.max(line[:,1])
-
-    return max_green
+    max_red= np.max(line[:,0])
+    max_blue= np.max(line[:,2])
+    
+    max_farben= max(max_blue, max_red, max_green)
+    
+    
+    return max_farben
 
 # define how to process the values got for each line by the function 'analyse_line' to find the flame front
 # line_values is a simple numpy array with the shape (nx)
