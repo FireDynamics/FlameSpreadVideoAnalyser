@@ -25,5 +25,5 @@ Together with the sample movie file, both scripts should run without issues with
 1. adopt video file name (default `video_fn = "test.wmv"`) or pass the file name as first command line argument
 1. adopt the number of frames to be skipped during the analysis (default `skip_frames=10`)
 1. define both analysis functions: `analyse_line` and `analyse_front`, see inline documentation on the functions template
-1. run the script
+1. run the script, the output will be placed in the `output` folder
 1. all created pdf and a result file `results.cvs`, that contains a table time [s] vs. flame position [cm], are placed in the `output` folder
