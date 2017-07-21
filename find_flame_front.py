@@ -77,6 +77,7 @@ frame_count = frame_count_group
 frame_count_output = 0
 
 total_result = []
+old_pos = 0
 
 while video.isOpened():
     for i in range(skip_frames):
@@ -100,6 +101,11 @@ while video.isOpened():
     # call function to analyse all line values
     pos = analyse_front(line_values)
     pos = pos * video_dx
+
+    if old_pos > pos:
+        pos = old_pos
+
+    old_pos = pos
 
     time = count / video_fps
 
