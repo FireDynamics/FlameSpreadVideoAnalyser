@@ -18,11 +18,15 @@ skip_frames = 10
 # set color channel to show as top image
 color_channel = 1
 
+# allow flame position to only increase?
+increase_position_only = False
+
 # define how to analyse a line tangential to the flame spread, output must be a single number
 # line has the type: (ny, 3), where ny is the number of pixels and 3 is the number of color channels
 def analyse_line(line):
 
     # determine the maximal value of the second (index 1) color channel, here green
+    # return np.max(line[:,1])
     max_green = np.max(line[:,1])
     max_red= np.max(line[:,0])
     max_blue= np.max(line[:,2])
@@ -102,7 +106,7 @@ while video.isOpened():
     pos = analyse_front(line_values)
     pos = pos * video_dx
 
-    if old_pos > pos:
+    if increase_position_only and (old_pos > pos):
         pos = old_pos
 
     old_pos = pos
@@ -117,7 +121,7 @@ while video.isOpened():
     ax[1].set_ylabel("line value []")
     ax[1].set_ylim([0,255])
 
-    ax[2].scatter(time, pos)
+    ax[2].scatter(time, pos, c='darkred', s=10, alpha=0.5, lw=0)
     ax[2].set_xlim([0, video_frames / video_fps])
     ax[2].set_ylim([0, target_size[0]])
     ax[2].set_ylabel("flame position [cm]")
